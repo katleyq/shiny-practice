@@ -26,14 +26,21 @@ ui <- navbarPage(
                         # trout siderbarPanel -----
                         sidebarPanel(
                           
-                          "trout inputs will live here"
+                          # channel type pickerinput ------
+                          pickerInput(inputId = "channel_type_input",
+                                      label = "Select channel type(s)",
+                                      choices = unique(clean_trout$channel_type),
+                                      selected = c("cascage", "pool"),
+                                      options = pickerOptions(actionsBox = TRUE),
+                                      multiple = TRUE)
                           
                         ), # END trout siderbarPanel
                         
                         # trout mainPanel ----
                         mainPanel(
                           
-                          "trout outputs will live here"
+                          # trout scatterplot output ----
+                          plotOutput(outputId = "trout_scatterplot_output")
                           
                         ) # END trout mainPanel
                         
@@ -44,7 +51,29 @@ ui <- navbarPage(
              # penguin tabPanel ----
              tabPanel(title = "Penguins",
                       
-                      "penguin viz goes here"
+                      # penguin tabPanel ------
+                      tabPanel(title = "Penguin",
+                               
+                               # penguin sidebarLayout -----
+                               sidebarLayout(
+                                 
+                                 # penguin siderbarPanel -----
+                                 sidebarPanel(
+                                   
+                                   "penguin inputs will live here"
+                                   
+                                 ), # END penguin siderbarPanel
+                                 
+                                 # penguin mainPanel ----
+                                 mainPanel(
+                                   
+                                   "penguin outputs will live here"
+                                   
+                                 ) # END penguin mainPanel
+                                 
+                               ) # END penguin sidebarLayout
+                               
+                      ) # END penguin tabPanel
                       
              ) # END penguin tabPanel
              
