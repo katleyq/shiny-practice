@@ -5,8 +5,17 @@ library(palmerpenguins)
 library(lterdatasampler)
 library(shinyWidgets)
 library(markdown)
-# library(shinycssloader)?
+library(shinycssloaders)
+library(sass)
 
+# compile css
+sass(
+  
+  input = sass_file("www/sass-styles.scss"),
+  output = "www/sass-styles.css",
+  options = sass_options(output_style = "compressed")
+  
+)
 
 #.......................wrangle trout data.......................
 clean_trout <- and_vertebrates |>
