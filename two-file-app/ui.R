@@ -4,7 +4,7 @@ ui <- navbarPage(
   
   # header
   header = tags$head(
-    tags$link(rel = "stylesheet", type = "text/css", href = "sass-styles.css")
+    #tags$link(rel = "stylesheet", type = "text/css", href = "sass-styles.css")
   ),
   
   title = "LTER Animal Data Explorer",
