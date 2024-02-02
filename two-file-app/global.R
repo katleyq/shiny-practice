@@ -4,6 +4,8 @@ library(tidyverse)
 library(palmerpenguins)
 library(lterdatasampler)
 library(shinyWidgets)
+library(markdown)
+# library(shinycssloader)?
 
 
 #.......................wrangle trout data.......................

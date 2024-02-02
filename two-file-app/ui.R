@@ -7,7 +7,17 @@ ui <- navbarPage(
   tabPanel(
     title = "About this page",
     
-    "background info goes here"
+    # intro text fluidRow ------
+    fluidRow(
+      column(1),
+      column(10, includeMarkdown("text/about.Rmd")),
+      column(1)
+    ), # END intro text fluidrow -----
+    
+    # add horizontal line
+    hr(),
+    
+    includeMarkdown("text/footer.Rmd")
     
   ), # END (Page 1) intro tabPanel
   
@@ -30,9 +40,22 @@ ui <- navbarPage(
                           pickerInput(inputId = "channel_type_input",
                                       label = "Select channel type(s)",
                                       choices = unique(clean_trout$channel_type),
-                                      selected = c("cascage", "pool"),
+                                      selected = c("cascade", "pool"),
                                       options = pickerOptions(actionsBox = TRUE),
-                                      multiple = TRUE)
+                                      multiple = TRUE),
+                          
+                          # section checkboxGroupButtons ----
+                          checkboxGroupButtons(inputId = "section_input",
+                                               label = "Select a sampling section(s):",
+                                               choices = c("clear cut forest", 
+                                                           "old growth forest"),
+                                               selected = c("clear cut forest", 
+                                                            "old growth forest"),
+                                               individual = FALSE,
+                                               justified = TRUE,
+                                               size = "sm",
+                                               checkIcon = list(yes = icon("check"),
+                                                                no = icon("xmark")))
                           
                         ), # END trout siderbarPanel
                         
@@ -60,14 +83,28 @@ ui <- navbarPage(
                                  # penguin siderbarPanel -----
                                  sidebarPanel(
                                    
-                                   "penguin inputs will live here"
+                                   # penguin island pickerInput ----
+                                   pickerInput(inputId = "island_input",
+                                               label = "Select island type(s)",
+                                               choices = unique(penguins$island),
+                                               selected = unique(penguins$island),
+                                               options = pickerOptions(actionsBox = TRUE),
+                                               multiple = TRUE),
+                                   
+                                    # penguin histogram bin sliderInput -----
+                                     sliderInput(inputId = "bin_num_input",
+                                                  label = "Select amount of bins:",
+                                                  value = 25,
+                                                  min = 1,
+                                                  max = 50),
                                    
                                  ), # END penguin siderbarPanel
                                  
                                  # penguin mainPanel ----
                                  mainPanel(
                                    
-                                   "penguin outputs will live here"
+                                   # histogram output ------
+                                   plotOutput(outputId = "penguin_hist_output")
                                    
                                  ) # END penguin mainPanel
                                  
